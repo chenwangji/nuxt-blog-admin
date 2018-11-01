@@ -23,7 +23,7 @@
           :default-openeds="defaultOpen"
           text-color="#bfc9d9"
           background-color="#24292e"
-          router="">
+          router>
           <template v-for="(item, index) in $router.options.routes">
             <el-submenu
               :index="index + ''"
@@ -194,7 +194,7 @@ section {
 
       .el-menu-item.is-active {
         color: $white;
-        background: $darkBlack;
+        background: $darkBlack !important;
       }
     }
   }

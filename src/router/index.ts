@@ -10,6 +10,8 @@ const Home = () => import(/* webpackChunkName: "home" */ '@/views/Home/Index.vue
 
 const Error = () => import(/* webpackChunkName: "error" */ '@/views/404.vue')
 
+const Set = () => import(/* webpackChunkName: "error" */ '@/views/Set/Index.vue')
+
 Vue.use(Router)
 
 const routes: RouteConfig[] = [
@@ -21,6 +23,15 @@ const routes: RouteConfig[] = [
     meta: { leaf: true, icon: 'icon-home' },
     children: [
       { path: '/home', component: Home, name: '我的面板', meta: { requiresAuth: true } }
+    ]
+  },
+  {
+    path: '/',
+    name: '全局设置',
+    component: Index,
+    meta: { leaf: true, icon: 'icon-set' },
+    children: [
+      { path: '/set', component: Set, name: '全局设置', meta: { page: 'set', requiresAuth: true } }
     ]
   },
   {
