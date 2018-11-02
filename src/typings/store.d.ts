@@ -1,5 +1,22 @@
 declare namespace StoreState {
 
+  export type State = 0 | 1 | 2 | 3 | string
+
+  // 公共
+  interface Common {
+    /** 唯一标识 */
+    readonly _id?: string
+
+    /** 发布日期 */
+    readonly create_at?: Date
+
+    /** 修改日期 */
+    readonly update_at: Date
+
+    /** 删除中 */
+    deleting: boolean
+  }
+
   // 登录
   export interface Login {
     /** 用户名 */
@@ -61,5 +78,19 @@ declare namespace StoreState {
 
     /** 备案号 */
     icp: string
+  }
+
+  export interface Tag extends Common {
+    /** 名称 */
+    name: string
+
+    /** 描述 */
+    descript: string
+
+    /** 排序 */
+    sort: number
+
+    /** 文章数量 */
+    count?: number
   }
 }
