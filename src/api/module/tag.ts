@@ -4,7 +4,7 @@ import ax from '../axios'
 export function getTags (
   params: any
 ): Promise<Ajax.AjaxResponse> {
-  return ax.get('/tag', params)
+  return ax.get('/tag', { params }) // axios get 请求和其他请求传参方式有区别
     .then(res => res.data)
     .catch(e => console.error(e))
 }
@@ -40,7 +40,7 @@ export function putTag (
 export function deleteTag (
   params: any
 ): Promise<Ajax.AjaxResponse> {
-  return ax.delete(`/tag${params._id}`, params)
+  return ax.delete(`/tag/${params._id}`, params)
     .then(res => res.data)
     .catch(e => console.error(e))
 }

@@ -1,6 +1,6 @@
 /** 标签 store */
 
-import { ActionTree, MutationTree, Store } from 'vuex'
+import { ActionTree, MutationTree } from 'vuex'
 
 import { success, error } from '@/utils/response'
 import service from '@/api'
@@ -13,9 +13,12 @@ interface IState {
 }
 
 interface IParams {
+  // eslint-disable-next-line
   current_page: number
+  // eslint-disable-next-line
   page_size: number
   keyword: string
+  // eslint-disable-next-line
   state?: StoreState.State
 }
 
@@ -34,11 +37,11 @@ const mutations: MutationTree<IState> = {
   'REQUEST_LIST_SUCCESS' (
     state: IState,
     payload: { list: StoreState.Tag[], total: number }
-    ): void {
-      state.fetch = false
-      state.list = payload.list
-      state.total = payload.total
-    },
+  ): void {
+    state.fetch = false
+    state.list = payload.list
+    state.total = payload.total
+  },
 
   'REQUEST_LIST_FAIL' (state: IState): void {
     state.fetch = false
@@ -51,7 +54,7 @@ const mutations: MutationTree<IState> = {
   },
 
   'POST_TAG_FINAL' (state: IState): void {
-    state.posting = true
+    state.posting = false
   },
 
   'POST_TAG_SUCCESS' (
@@ -116,7 +119,7 @@ const actions: ActionTree<IState, any> = {
     const res: Ajax.AjaxResponse = await service.putTag(tag)
     if (res && res.code === 1) {
       success('修改标签成功')
-      commit('POST_TAG_SUCCESS')
+      commit('POST_TAG_SUCCESS', tag)
     } else error(res.message)
     commit('POST_TAG_FINAL')
     return res
@@ -144,4 +147,11 @@ const actions: ActionTree<IState, any> = {
     if (res && res.code === 1) success('排序成功')
     else error(res.message)
   }
+}
+
+export default {
+  namespaced: true,
+  state,
+  mutations,
+  actions
 }

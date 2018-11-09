@@ -3,6 +3,7 @@ import Vuex, { ActionTree, MutationTree, Store } from 'vuex'
 
 import { success, error } from '@/utils/response'
 import service from '@/api'
+import modules from './modules'
 
 Vue.use(Vuex)
 
@@ -145,5 +146,6 @@ const actions: ActionTree<IState, any> = {
 export default new Vuex.Store({
   state,
   mutations,
-  actions
+  actions,
+  modules
 })

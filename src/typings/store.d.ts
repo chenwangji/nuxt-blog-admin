@@ -11,10 +11,10 @@ declare namespace StoreState {
     readonly create_at?: Date
 
     /** 修改日期 */
-    readonly update_at: Date
+    readonly update_at?: Date
 
     /** 删除中 */
-    deleting: boolean
+    deleting?: boolean
   }
 
   // 登录
@@ -88,7 +88,7 @@ declare namespace StoreState {
     descript: string
 
     /** 排序 */
-    sort: number
+    sort?: number
 
     /** 文章数量 */
     count?: number
