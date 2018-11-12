@@ -169,7 +169,7 @@ export default class Tags extends Vue {
   }
 
   private async getData (): Promise<void> {
-    const res: Ajax.AjaxResponse = await this.$store.dispatch('tag/getTag', {
+    const res: Ajax.AjaxResponse = await this.$store.dispatch('tag/getTags', {
       current_page: this.currentPage,
       page_size: this.pageSize,
       keyword: this.keyword

@@ -93,4 +93,33 @@ declare namespace StoreState {
     /** 文章数量 */
     count?: number
   }
+
+  export interface Article extends Common {
+    /** 标题 */
+    title: string
+
+    /** 关键字 */
+    keyword: string
+
+    /** 描述 */
+    descript: string
+
+    /** 内容 */
+    content?: string,
+
+    /** 状态 */
+    state: State
+
+    /** 公开状态 */
+    publish: State
+
+    /** 类别 */
+    type: State
+
+    /** 缩略图 */
+    thumb: string
+
+    /** 其他 */
+    [propName: string]: any
+  }
 }

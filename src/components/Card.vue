@@ -47,14 +47,14 @@ export default class Card extends Vue {
   @Prop({ default: '40px' })
   private width!: string
 
-  public toggle (e: string | number, typeName: string): void {
-    this.$emit('toggle', { typeName, id: e })
+  public toggle (id: string | number, typeName: string): void {
+    this.$emit('toggle', { typeName, id })
   }
 }
 </script>
 
-<style lang="scss" scoped>
-@import '../assets/scss/variables.scss';
+<style lang="scss">
+@import '../assets/scss/variable.scss';
 
 .box-card {
   border: none;
@@ -74,10 +74,39 @@ export default class Card extends Vue {
     padding-bottom: 10px;
     margin-bottom: 10px;
     line-height: 34px;
-    border-bottom: 1px dashed rgba(210, 210, 210);
+    border-bottom: 1px dashed rgb(210, 210, 210);
 
     .text {
+      flex-shrink: 0;
+      text-align: right;
+      font-size: 14px;
+    }
 
+    .el-radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-left: 10px;
+
+      .el-radio-button {
+        margin: 3px 0;
+      }
+
+      .el-radio-button__inner {
+        border: none;
+        border-radius: 4px;
+      }
+      .is-active {
+        .el-radio-button__inner {
+          background: $black;
+          box-shadow: none;
+        }
+      }
+    }
+
+    .el-input {
+      width: 260px;
+      margin-right: 10px;
     }
   }
 }

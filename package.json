@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "^2.4.9",
+    "moment": "^2.22.2",
     "particles.js": "^2.0.0",
     "sortablejs": "^1.7.0",
     "vue": "^2.5.17",

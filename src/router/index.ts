@@ -8,6 +8,8 @@ const Index = () => import(/* webpackChunkName: "index" */ '@/views/Index.vue')
 
 const Home = () => import(/* webpackChunkName: "home" */ '@/views/Home/Index.vue')
 
+const Article = () => import(/* webpackChunkName: "Article" */ '@/views/Article/Index.vue')
+
 const Tags = () => import(/* webpackChunkName: "tag" */ '@/views/Tags/Index.vue')
 
 const Error = () => import(/* webpackChunkName: "error" */ '@/views/404.vue')
@@ -34,6 +36,15 @@ const routes: RouteConfig[] = [
     meta: { leaf: true, icon: 'icon-set' },
     children: [
       { path: '/set', component: Set, name: '全局设置', meta: { page: 'set', requiresAuth: true } }
+    ]
+  },
+  {
+    path: '/',
+    name: '文章管理',
+    component: Index,
+    meta: { leaf: false, icon: 'icon-article' },
+    children: [
+      { path: '/article/index', component: Article, name: '文章列表', meta: { icon: 'icon-list', requiresAuth: true } }
     ]
   },
   {

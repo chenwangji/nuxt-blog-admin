@@ -5,10 +5,13 @@ import router from './router/index'
 import store from './store/index'
 
 import './assets/scss/index.scss'
+import { format } from './filters/index'
 
 Vue.config.productionTip = false
 
 Vue.use(ElementUi)
+
+Vue.filter('format', format)
 
 const app: Vue = new Vue({
   router,

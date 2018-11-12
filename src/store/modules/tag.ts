@@ -81,7 +81,7 @@ const mutations: MutationTree<IState> = {
 
 const actions: ActionTree<IState, any> = {
   // 获取列表
-  async getTag (
+  async getTags (
     { commit },
     data: IParams
   ): Promise<Ajax.AjaxResponse> {
