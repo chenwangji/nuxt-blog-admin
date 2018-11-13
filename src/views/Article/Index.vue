@@ -114,7 +114,8 @@
         </el-table-column>
         <el-table-column
           label="操作"
-          label-class-name="head">
+          label-class-name="head"
+          width="300">
           <template slot-scope="scope">
             <transition-group
               name="btn"
@@ -155,11 +156,11 @@
                 type="danger"
                 size="small"
                 key="5"
-                @click="changeState(scope.row, 'publish', 1)">
+                @click="changeState(scope.row, 'state', 2)">
                 草稿
               </el-button>
               <el-button
-                v-if="scope.row.state === 2"
+                v-if="scope.row.state === 1"
                 type="danger"
                 size="small"
                 key="6"
@@ -313,7 +314,9 @@ export default class Article extends Vue {
   }
 
   // 详情
-  private edit (row: StoreState.Article): void {}
+  private edit (row: StoreState.Article): void {
+    this.$router.push(`/article/release?id=${row._id}`)
+  }
 
   // 修改状态
   private changeState (
@@ -336,7 +339,16 @@ export default class Article extends Vue {
   }
 
   // 删除文章
-  private dele (row: StoreState.Article) {}
+  private dele (row: StoreState.Article) {
+    this.$confirm('求顶删除此文章吗？', '提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    }).then(async (): Promise<void> => {
+      const res: Ajax.AjaxResponse = await this.$store.dispatch('article/deleteArt', { _id: row._id })
+      if (res.code === 1) this.getData()
+    }).catch(e => console.log(e))
+  }
 
   private beforeCreate (): void {
     Promise.all([

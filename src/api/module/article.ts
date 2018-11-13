@@ -26,3 +26,30 @@ export function patchArt (
     .then(res => res.data)
     .catch(e => console.log(e))
 }
+
+// 删除文章
+export function deleteArt (
+  params: any
+): Promise<Ajax.AjaxResponse> {
+  return ax.delete(`/article/${params._id}`)
+    .then(res => res.data)
+    .catch(e => console.log(e))
+}
+
+// 获取文章
+export function getArt (
+  params: any
+): Promise<Ajax.AjaxResponse> {
+  return ax.get(`/article/${params._id}`)
+    .then(res => res.data)
+    .catch(e => console.log(e))
+}
+
+// 修改文章
+export function putArt (
+  params: any
+): Promise<Ajax.AjaxResponse> {
+  return ax.put(`/article/${params._id}`, params)
+    .then(res => res.data)
+    .catch(e => console.log(e))
+}
