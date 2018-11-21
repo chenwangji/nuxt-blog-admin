@@ -17,6 +17,13 @@ declare namespace StoreState {
     deleting?: boolean
   }
 
+  // 评论作者
+  interface Author {
+    name: string
+    email?: string
+    site?: string
+  }
+
   // 登录
   export interface Login {
     /** 用户名 */
@@ -121,5 +128,39 @@ declare namespace StoreState {
 
     /** 其他 */
     [propName: string]: any
+  }
+
+  // 评论
+  export interface Comment extends Common {
+    name?: string
+
+    /** 评论文章所在 id */
+    post_id?: string
+
+    /** 父级 id */
+    pid?: string
+
+    /** 内容 */
+    content?: string
+
+    /** 被赞数 */
+    likes?: number
+
+    /** ip */
+    ip?: string
+
+    /** 用户位置 */
+    city?: string
+    range?: string
+    country?: string
+
+    /** 用户 UA */
+    agent?: string
+
+    /** 评论作者 */
+    author?: Author
+
+    /** state */
+    state?: State
   }
 }

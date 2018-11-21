@@ -8,9 +8,11 @@ const Index = () => import(/* webpackChunkName: "index" */ '@/views/Index.vue')
 
 const Home = () => import(/* webpackChunkName: "home" */ '@/views/Home/Index.vue')
 
-const Article = () => import(/* webpackChunkName: "Article" */ '@/views/Article/Index.vue')
+const Article = () => import(/* webpackChunkName: "article" */ '@/views/Article/Index.vue')
 
-const Release = () => import(/* webpackChunkName: "Release" */ '@/views/Article/Release.vue')
+const Release = () => import(/* webpackChunkName: "release" */ '@/views/Article/Release.vue')
+
+const Comment = () => import(/* webpackChunkName: "comment" */ '@/views/Comment/Index.vue')
 
 const Tags = () => import(/* webpackChunkName: "tag" */ '@/views/Tags/Index.vue')
 
@@ -56,7 +58,16 @@ const routes: RouteConfig[] = [
     component: Index,
     meta: { leaf: true, icon: 'icon-tag' },
     children: [
-      { path: '/tag', component: Tags, name: '文章标签', meta: { requiresAuth: true } }
+      { path: '/tag', component: Tags, name: '文章标签', meta: { requiresAuth: true, icon: 'icon-tag' } }
+    ]
+  },
+  {
+    path: '/',
+    name: '评论',
+    component: Index,
+    meta: { leaf: true, icon: 'icon-comments' },
+    children: [
+      { path: '/comment', component: Comment, name: '评论', meta: { icon: 'icon-comments', requiresAuth: true } }
     ]
   },
   {

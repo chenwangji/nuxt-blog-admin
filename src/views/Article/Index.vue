@@ -244,8 +244,8 @@ export default class Article extends Vue {
       typeName: 'publish',
       list: [
         { name: '全部', id: '' },
-        { name: '公开', id: 1 },
-        { name: '私密', id: 2 }
+        { name: '私密', id: 1 },
+        { name: '公开', id: 2 }
       ],
       default: ''
     },
@@ -254,8 +254,8 @@ export default class Article extends Vue {
       typeName: 'state',
       list: [
         { name: '全部', id: '' },
-        { name: '已发布', id: 1 },
-        { name: '草稿', id: 2 }
+        { name: '草稿', id: 1 },
+        { name: '已发布', id: 2 }
       ],
       default: ''
     }

@@ -106,8 +106,8 @@
             label-width="90px"
             style="margin-bottom: 10px">
             <el-radio-group v-model="form.publish">
-              <el-radio :label="1">公开</el-radio>
-              <el-radio :label="2">私密</el-radio>
+              <el-radio :label="1">私密</el-radio>
+              <el-radio :label="2">公开</el-radio>
             </el-radio-group>
           </el-form-item>
         </div>
