@@ -45,6 +45,43 @@ const mutations: MutationTree<IState> = {
     state.fetch = false
     state.list = []
     state.total = 0
+  },
+
+  'POSTING_COMMENT' (state: IState): void {
+    state.posting = true
+  },
+
+  'PUT_COMMENT_SUCCESS' (
+    state: IState,
+    comment: { _id: string, state: StoreState.State, post_id: string }
+  ): void {
+    (
+      state.list.find((item: StoreState.Comment) => item._id === comment._id) as StoreState.Comment
+    ).state = comment.state
+  },
+
+  'POST_COMMENT_FINAL' (
+    state: IState
+  ): void {
+    state.posting = false
+  },
+
+  'DELETE_COMMENT' (
+    state: IState,
+    comment: { _id: string, post_id: string }
+  ): void {
+    (
+      state.list.find((item: StoreState.Comment) => item._id === comment._id) as StoreState.Comment
+    ).deleting = true
+  },
+
+  'DELETE_COMMENT_FINAL' (
+    state: IState,
+    comment: { _id: string, post_id: string }
+  ): void {
+    (
+      state.list.find((item: StoreState.Comment) => item._id === comment._id) as StoreState.Comment
+    ).deleting = false
   }
 }
 
@@ -61,6 +98,34 @@ const actions: ActionTree<IState, any> = {
       const total: number = res.result.pagination.total
       commit('REQUEST_LIST_SUCCESS', { list, total })
     } else commit('REQUEST_LIST_FAIL')
+    return res
+  },
+
+  // 修改评论
+  async putComment (
+    { commit },
+    comment: { _id: string, state: StoreState.State, post_ids: string }
+  ): Promise<Ajax.AjaxResponse> {
+    commit('POSTING_COMMENT')
+    const res: Ajax.AjaxResponse = await service.putComment(comment)
+    if (res && res.code === 1) {
+      success('修改成功')
+      commit('PUT_COMMENT_SUCCESS', comment)
+    } else error(res.message)
+    commit('POST_COMMENT_FINAL')
+    return res
+  },
+
+  // 删除评论
+  async deleteComment (
+    { commit },
+    comment: { _id: string, post_id: string }
+  ): Promise<Ajax.AjaxResponse> {
+    commit('DELETE_COMMENT', comment)
+    const res: Ajax.AjaxResponse = await service.deleteComment(comment)
+    if (res && res.code === 1) success('删除成功')
+    else error(res.message)
+    commit('DELETE_COMMENT_FINAL', comment)
     return res
   }
 }

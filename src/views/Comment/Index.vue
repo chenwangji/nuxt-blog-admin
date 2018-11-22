@@ -231,6 +231,7 @@ export default class Comment extends Vue {
   private keyword = ''
   private currentPage = 1
   private state: StoreState.State = ''
+  private dialogV = false
   private form: StoreState.Comment = {
     author: {
       name: ''
@@ -270,11 +271,38 @@ export default class Comment extends Vue {
     })
   }
 
-  private editComment (row: StoreState.Comment) {}
+  // 修改
+  private editComment (row: StoreState.Comment) {
+    this.dialogV = true
+    this.form = {
+      ...row,
+      name: row.author && row.author.name
+    }
+  }
 
-  private changeState () {}
+  // 修改状态
+  private async changeState (row: StoreState.Comment, state: number): Promise<void> {
+    await this.$store.dispatch('comment/putComment', {
+      ...row,
+      state,
+      post_ids: row.post_id
+    })
+  }
 
-  private deleteComment () {}
+  // 删除
+  private deleteComment (row: StoreState.Comment): void {
+    this.$confirm('确定删除此数据吗？', '提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    }).then(async () => {
+      const res: Ajax.AjaxResponse = await this.$store.dispatch('comment/deleteComment', {
+        _id: row._id,
+        post_id: row.post_id
+      })
+      if (res.code === 1) this.getData()
+    }).catch(err => console.log(err))
+  }
 
   private uaParse (str: string): string {
     return uaParse(str)
@@ -284,7 +312,26 @@ export default class Comment extends Vue {
     return osParse(str)
   }
 
-  private submit (formName: string) {}
+  private submit (formName: string) {
+    (this.$refs[formName] as HTMLFormElement).validate(async (valid: boolean): Promise<boolean> => {
+      if (valid) {
+        (this.form as any).author.name = this.form.name
+        delete this.form.name
+        const res: Ajax.AjaxResponse = await this.$store.dispatch('comment/putComment', {
+          ...this.form,
+          post_ids: this.form.post_id,
+          author: this.form.author
+        })
+
+        if (res.code === 1) {
+          this.dialogV = false
+          this.getData()
+        }
+        return true
+      }
+      return false
+    })
+  }
 
   private pageChange (val: number) {
     this.currentPage = val
