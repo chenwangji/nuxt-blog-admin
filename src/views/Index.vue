@@ -3,13 +3,15 @@
     <header>
       <div class="logo font-futura">
         <router-link to="/">
-          <img src="../assets/logo.png" alt="" width="36">
-          <span></span>
+          <span>WANGJI</span>
         </router-link>
       </div>
       <div class="user">
         <span class="user-face-box">
-          <img src="../assets/logo.png" alt="" class="user-face" width="36" >
+          <img
+            :src="user.gravatar + '?imageView2/5/w/36/h/36/q/75'"
+            alt=""
+            class="user-face">
         </span>
       </div>
     </header>
@@ -111,7 +113,9 @@ export default class Index extends Vue {
   private currentPathName = ''
   private currentPathNameParent = ''
 
-  // private get user (): any {}
+  private get user (): StoreState.User {
+    return this.$store.state.user
+  }
 
   @Watch('$route')
   private routeChange (val: Route, oldVal: Route): void {

@@ -114,19 +114,19 @@
                 修改
               </el-button>
               <el-button
-                v-if="scope.row.state === 0 || scope.row.state === 2"
+                v-if="scope.row.state === 0 || scope.row.state === 1"
                 type="success"
                 size="small"
                 key="1"
-                @click="changeState(scope.row, 1)">
+                @click="changeState(scope.row, 2)">
                 通过
               </el-button>
               <el-button
-                v-if="scope.row.state === 0 || scope.row.state === 1"
+                v-if="scope.row.state === 0 || scope.row.state === 2"
                 type="danger"
                 size="small"
                 key="2"
-                @click="changeState(scope.row, 2)">
+                @click="changeState(scope.row, 1)">
                 不通过
               </el-button>
               <el-button
