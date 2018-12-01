@@ -136,7 +136,7 @@
           <el-form-item label="个性签名">
             <el-input
               v-model="userForm.slogan"
-              :maxlength="20"
+              :maxlength="40"
               ></el-input>
           </el-form-item>
           <el-form-item

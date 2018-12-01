@@ -188,7 +188,7 @@ export default class Release extends Vue {
     key: '',
     token: ''
   }
-  private id = ''
+  private id: string | string[] = ''
   private percent = 0
 
   private get detail (): StoreState.Article {

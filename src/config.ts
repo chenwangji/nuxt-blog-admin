@@ -11,4 +11,4 @@ export const API_ROOT: string = IS_DEV ? 'http://localhost:8000/api/' : window.l
 /**
  * 七牛对象存储空间 测试域名
  */
-export const QN_URL: string = 'http://phi85s71l.bkt.clouddn.com/'
+export const QN_URL: string = 'http://img.todyto.cn/'
