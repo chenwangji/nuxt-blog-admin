@@ -18,7 +18,9 @@ const Tags = () => import(/* webpackChunkName: "tag" */ '@/views/Tags/Index.vue'
 
 const Error = () => import(/* webpackChunkName: "error" */ '@/views/404.vue')
 
-const Set = () => import(/* webpackChunkName: "error" */ '@/views/Set/Index.vue')
+const Set = () => import(/* webpackChunkName: "set" */ '@/views/Set/Index.vue')
+
+const Heros = () => import(/* webpackChunkName: "heros" */ '@/views/Heros/Index.vue')
 
 Vue.use(Router)
 
@@ -68,6 +70,15 @@ const routes: RouteConfig[] = [
     meta: { leaf: true, icon: 'icon-comments' },
     children: [
       { path: '/comment', component: Comment, name: '评论', meta: { icon: 'icon-comments', requiresAuth: true } }
+    ]
+  },
+  {
+    path: '/',
+    name: '留言墙',
+    component: Index,
+    meta: { leaf: true, icon: 'icon-hero' },
+    children: [
+      { path: '/heros', component: Heros, name: '留言墙', meta: { requiresAuth: true } }
     ]
   },
   {

@@ -163,4 +163,24 @@ declare namespace StoreState {
     /** state */
     state?: State
   }
+
+  // 留言
+  export interface Hero extends Common {
+    /** 名字 */
+    name: string
+
+    /** 内容 */
+    content: string
+
+    /** 状态 */
+    state: State
+
+    /** ip */
+    ip: string
+
+    /** 用户位置 */
+    city: string
+    range: string
+    country: string
+  }
 }
