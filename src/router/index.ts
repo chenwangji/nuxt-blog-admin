@@ -22,6 +22,8 @@ const Set = () => import(/* webpackChunkName: "set" */ '@/views/Set/Index.vue')
 
 const Heros = () => import(/* webpackChunkName: "heros" */ '@/views/Heros/Index.vue')
 
+const Links = () => import(/* webpackChunkName: "link" */ '@/views/Links/Index.vue')
+
 Vue.use(Router)
 
 const routes: RouteConfig[] = [
@@ -79,6 +81,15 @@ const routes: RouteConfig[] = [
     meta: { leaf: true, icon: 'icon-hero' },
     children: [
       { path: '/heros', component: Heros, name: '留言墙', meta: { requiresAuth: true } }
+    ]
+  },
+  {
+    path: '/',
+    name: '友链',
+    component: Index,
+    meta: { leaf: true, icon: 'icon-link1' },
+    children: [
+      { path: '/link', component: Links, name: '友链', meta: { requiresAuth: true } }
     ]
   },
   {

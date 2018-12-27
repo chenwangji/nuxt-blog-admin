@@ -4,6 +4,7 @@ import * as tag from './module/tag'
 import * as article from './module/article'
 import * as comment from './module/comment'
 import * as heros from './module/heros'
+import * as links from './module/links'
 
 export default {
   ...user,
@@ -11,5 +12,6 @@ export default {
   ...tag,
   ...article,
   ...comment,
-  ...heros
+  ...heros,
+  ...links
 }

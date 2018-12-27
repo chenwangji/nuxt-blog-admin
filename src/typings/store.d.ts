@@ -183,4 +183,16 @@ declare namespace StoreState {
     range: string
     country: string
   }
+
+  // 友链
+  export interface Link extends Common {
+    /** 姓名 */
+    name: string
+
+    /** 地址 */
+    url: string
+
+    /** 状态 */
+    state?: State
+  }
 }
