@@ -71,7 +71,7 @@
           show-overflow-tooltip>
           <template slot-scope="scope">
             <a
-              :href="`http://localhost:8000/article/${scope.row._id}`"
+              :href="`http://log.todyto.cn/article/${scope.row._id}`"
               target="_blank"
               class="article-link"
               rel="noopener noreferrer">
